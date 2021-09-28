@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
-import operations.*;
 
 public class Jorth {
 
@@ -12,12 +10,12 @@ public class Jorth {
         executeProgram(parseFile(new File(args[0])));        
     }
 
-    private static Iterable<Operation> parseFile(File f) {
+    private static ExecutionStack parseFile(File f) {
         if (!f.exists() || !f.isFile()) {
             throw new RuntimeException("File: " + f + " not found!");
         }
 
-        LinkedList<Operation> program = new LinkedList<>();
+        ExecutionStack program = new ExecutionStack();
 
         Scanner s;
         try {
@@ -32,18 +30,26 @@ public class Jorth {
             for (String op : ops) {
                 switch (op) {
                     case ".":
-                        program.add(new Dump());
+                        program.push(new Dump());
                         break;
                     case "+":
-                        program.add(new Plus());
+                        program.push(new Plus());
                         break;
                     case "*":
-                        program.add(new Mult());
+                        program.push(new Mult());
                         break;
+                    case "=":
+                        program.push(new Equal());
+                        break;
+                    case "IF":
+                        program.push(new IF());
+                        break;
+                    case "END":
+                        program.push(new END());
                     default:
                         try {
                             int a = Integer.parseInt(op);
-                            program.add(new Immediate(a));
+                            program.push(new Immediate(a));
                         } catch (Exception e) {
                             //TODO: handle exception
                         }
@@ -55,10 +61,7 @@ public class Jorth {
         return program;
     }
 
-    private static void executeProgram(Iterable<Operation> program) {
-        stack = new Stack<>();
-        for (Operation op : program) {
-            op.execute(stack);
-        }
+    private static void executeProgram(ExecutionStack program) {
+        program.execute();
     }
 }
