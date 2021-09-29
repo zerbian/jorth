@@ -76,7 +76,12 @@ public class Preprocessor {
                         macros.put(macroName, macroOps);
                         return;
                     default:
-                        macroOps.add(token);
+                        // allow macros inside of macros
+                        if (macros.containsKey(token)) {
+                            macroOps.addAll(macros.get(token));
+                        } else {
+                            macroOps.add(token);
+                        }
                         break;
                 }
             }

@@ -2,4 +2,8 @@ macro dupdup
 dup dup
 macro_end
 
-1 dupdup + + print
+macro super
+34 35 + dupdup + print
+macro_end
+
+1 dupdup + + print super

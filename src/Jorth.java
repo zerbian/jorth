@@ -10,13 +10,17 @@ public class Jorth {
             return;
         }
         ExecutionStack es = new ExecutionStack();
-        parseOperations(pre, es);
+        if (parseOperations(pre, es) != 0) {
+            return;
+        };
         executeProgram(es);        
     }
 
-    private static void parseOperations(Iterable<String> ops, ExecutionStack program) {
+    private static int parseOperations(Iterable<String> ops, ExecutionStack program) {
         for (String op : ops) {
             switch (op.toLowerCase()) {
+            case "":
+                break;
             case Print.TOKEN:
                 program.push(new Print());
                 break;
@@ -67,11 +71,13 @@ public class Jorth {
                     int a = Integer.parseInt(op);
                     program.push(new Immediate(a));
                 } catch (Exception e) {
-                            //TODO: handle exception
+                            System.err.println("Invalid token '" + op + "', cannot resolve to Operation, Number or Macro");
+                            return 3;
                 }
                 break;
             }
         }
+        return 0;
     }
     
     private static void executeProgram(ExecutionStack program) {
