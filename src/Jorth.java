@@ -3,13 +3,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Stack;
 
-import javax.swing.ProgressMonitor;
-
 public class Jorth {
 
     static Stack<Integer> stack;
     public static void main(String[] args) {
-        executeProgram(parseFile(new File(args[0])));        
+        ExecutionStack es = parseFile(new File(args[0]));
+        System.out.println(es);
+        executeProgram(es);        
     }
 
     private static ExecutionStack parseFile(File f) {
