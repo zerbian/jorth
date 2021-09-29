@@ -1,7 +1,6 @@
-import java.util.Iterator;
 import java.util.Stack;
 
-public class ExecutionStack implements Iterable{ 
+public class ExecutionStack { 
     private Node head = null;
     private Node tail = null;
     private Node opRef = null;
@@ -45,9 +44,10 @@ public class ExecutionStack implements Iterable{
     @Override
     public String toString() {
         String s = "";
-        Iterator i = this.iterator();
-        while(i.hasNext()) {
-            s += ((Operation)i.next()).getRep() + " ";
+        Node pointer = head;
+        while(pointer != null) {
+            s += pointer.value.getRep() + " ";
+            pointer = pointer.next;
         }
         return s;
     }
@@ -98,28 +98,5 @@ public class ExecutionStack implements Iterable{
             if (opRef.value instanceof If || opRef.value instanceof Do) nested++;
             if (opRef.value instanceof End) nested--;
         } while (nested != 0);
-    }
-
-    @Override
-    public Iterator iterator() {
-        return new ExecutionStackIterator();
-    }
-
-    private class ExecutionStackIterator implements Iterator {
-        
-        private Node pointer = head;
-
-        @Override
-        public boolean hasNext() {
-            return pointer != null;
-        }
-
-        @Override
-        public Object next() {
-            Object out = pointer.value;
-            pointer = pointer.next;
-            return out;
-        }
-
     }
 }
