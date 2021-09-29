@@ -11,17 +11,10 @@ public class ExecutionStack {
 
     private class Node {
         private Operation value;
-        private Node prev = null;
         private Node next = null;
 
         Node(Operation value) {
             this.value = value;
-        }
-
-        Node(Operation value, Node next, Node prev) {
-            this.value = value;
-            this.next = next;
-            this.prev = prev;
         }
     }
 
@@ -29,7 +22,7 @@ public class ExecutionStack {
         if (head == null) {
             head = tail = new Node(a);
         } else {
-            tail.next = new Node(a, null, tail);
+            tail.next = new Node(a);
             tail = tail.next;
         }
     }
