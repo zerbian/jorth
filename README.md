@@ -135,7 +135,7 @@ macro double_dup
 dup dup
 macro_end
 
-1 dup dup print
+1 double_dup print
 ```
 ```
 3
