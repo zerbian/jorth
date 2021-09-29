@@ -4,7 +4,7 @@ public class If implements Operation {
 
     @Override
     public int execute(Stack<Integer> s) {
-        return s.pop();
+        return s.pop() == 1 ? 1 : 0;
     }
     
 }

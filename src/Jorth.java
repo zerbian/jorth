@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Stack;
 
+import javax.swing.ProgressMonitor;
+
 public class Jorth {
 
     static Stack<Integer> stack;
@@ -35,10 +37,16 @@ public class Jorth {
                     case "+":
                         program.push(new Plus());
                         break;
+                    case "-":
+                        program.push(new Minus());
+                        break;
                     case "*":
                         program.push(new Mult());
                         break;
-                    case "=":
+                    case "mod":
+                        program.push(new Mod());
+                        break;
+                    case "==":
                         program.push(new Equal());
                         break;
                     case "<":

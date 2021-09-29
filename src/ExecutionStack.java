@@ -7,6 +7,8 @@ public class ExecutionStack {
 
     private Stack<Node> loopStack = new Stack<>();
 
+    int ifEndLevel = 0;
+
     private class Node {
         private Operation value;
         private Node prev = null;
@@ -45,44 +47,44 @@ public class ExecutionStack {
         while (opRef != null) {
             int t = opRef.value.execute(stack);
             // check if we hit an IF statement
-            if (opRef.value instanceof If && t != 0) {
-                advanceToIfEnd();
+            if (opRef.value instanceof If) {
+                if  (t == 0) {
+                    advanceToMatchingEnd();
+                } else {
+                    ifEndLevel++;
+                }
             } else if (opRef.value instanceof While) {
                 loopStack.push(opRef); // save pointer to go back
             } else if (opRef.value instanceof Do) {
-                if (t == 1) {
-                    advanceToWhileEnd();
+                if (t == 0) {
+                    advanceToMatchingEnd();
                     loopStack.pop();
                 }
             } else if (opRef.value instanceof End) {
-                Object o = ((End)(opRef.value)).getReference();
-                if (o == null) {
-                    if (!loopStack.isEmpty()) {
-                        o = loopStack.peek();
-                    } else {
-                        assert false : "Loops should always have returnreferences";
+                // check if end is an if end oder while end
+                if (ifEndLevel > 0) { // if end
+                    ifEndLevel--;
+                } else { // while end
+                    Object o = ((End)(opRef.value)).getReference();
+                    if (o == null) {
+                        if (!loopStack.isEmpty()) {
+                            o = loopStack.peek();
+                        } else {
+                            assert false : "Loops should always have returnreferences";
+                        }
                     }
-                }
-                opRef = (Node)o;
+                    opRef = (Node)o;
+                }   
             }
             opRef = opRef.next;
         }
     }
 
-    private void advanceToIfEnd() {
+    private void advanceToMatchingEnd() {
         int nested = 1;
         do {
             opRef = opRef.next;
-            if (opRef.value instanceof If) nested++;
-            if (opRef.value instanceof End) nested--;
-        } while (nested != 0);
-    }
-
-    private void advanceToWhileEnd() {
-        int nested = 1;
-        do {
-            opRef = opRef.next;
-            if (opRef.value instanceof Do) nested++;
+            if (opRef.value instanceof If || opRef.value instanceof Do) nested++;
             if (opRef.value instanceof End) nested--;
         } while (nested != 0);
     }

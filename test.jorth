@@ -1,4 +1,7 @@
-10 while dup 1 < do
+10
+while dup 0 < do
+    dup 3 swap mod 0 == if
     dup .
-    -1 +
+    end
+    1 -
 end
