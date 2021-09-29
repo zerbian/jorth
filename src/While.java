@@ -6,5 +6,10 @@ public class While implements Operation {
     public int execute(Stack<Integer> s) {
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "while";   
+    }
     
 }

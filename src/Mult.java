@@ -10,4 +10,9 @@ public class Mult implements Operation {
         return 0;
     }
 
+    @Override
+    public String getRep() {
+        return "*";   
+    }
+
 }

@@ -9,5 +9,10 @@ public class Dup implements Operation {
         s.push(value);
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "dup";
+    }
     
 }

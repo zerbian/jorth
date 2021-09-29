@@ -7,5 +7,10 @@ public class Do implements Operation {
         if (s.pop() == 1) return 1;
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "do";
+    }
     
 }

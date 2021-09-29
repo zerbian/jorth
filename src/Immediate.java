@@ -13,5 +13,10 @@ public class Immediate implements Operation {
         s.push(value);
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "" + value;
+    }
         
 }

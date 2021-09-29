@@ -9,5 +9,10 @@ public class Equal implements Operation {
         s.push(a == b ? 1 : 0);        
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "==";
+    }
     
 }

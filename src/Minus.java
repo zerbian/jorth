@@ -9,5 +9,10 @@ public class Minus implements Operation {
         s.push(b - a);
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "-";
+    }
     
 }

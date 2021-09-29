@@ -12,5 +12,10 @@ public class End implements Operation {
     public Object getReference() {
         return returnReference;
     }
+
+    @Override
+    public String getRep() {
+        return "end";
+    }
     
 }

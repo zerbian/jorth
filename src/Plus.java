@@ -9,5 +9,10 @@ public class Plus implements Operation {
         s.push(a + b);
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "+";   
+    }
     
 }

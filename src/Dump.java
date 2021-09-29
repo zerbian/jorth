@@ -7,5 +7,10 @@ public class Dump implements Operation {
         System.out.println(s.pop());
         return 0;        
     }
+
+    @Override
+    public String getRep() {
+        return ".";
+    }
     
 }

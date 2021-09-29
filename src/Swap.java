@@ -10,5 +10,10 @@ public class Swap implements Operation {
         s.push(b);
         return 0;
     }
+
+    @Override
+    public String getRep() {
+        return "swap";   
+    }
     
 }

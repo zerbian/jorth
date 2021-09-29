@@ -7,4 +7,8 @@ public class If implements Operation {
         return s.pop() == 1 ? 1 : 0;
     }
     
+    @Override
+    public String getRep() {
+        return "if";   
+    }
 }
