@@ -28,7 +28,7 @@ public class Jorth {
         while (s.hasNextLine()) {
             String[] ops = s.nextLine().split(" ");
             for (String op : ops) {
-                switch (op) {
+                switch (op.toLowerCase()) {
                     case ".":
                         program.push(new Dump());
                         break;
@@ -41,11 +41,27 @@ public class Jorth {
                     case "=":
                         program.push(new Equal());
                         break;
-                    case "IF":
-                        program.push(new IF());
+                    case "<":
+                        program.push(new LessThan());
                         break;
-                    case "END":
-                        program.push(new END());
+                    case "dup":
+                        program.push(new Dup());
+                        break;
+                    case "swap":
+                        program.push(new Swap());
+                        break;
+                    case "if":
+                        program.push(new If());
+                        break;
+                    case "end":
+                        program.push(new End());
+                        break;
+                    case "while":
+                        program.push(new While());
+                        break;
+                    case "do":
+                        program.push(new Do());
+                        break;
                     default:
                         try {
                             int a = Integer.parseInt(op);

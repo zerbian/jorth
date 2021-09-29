@@ -1,10 +1,11 @@
 import java.util.Stack;
 
-public class If implements Operation {
+public class Do implements Operation {
 
     @Override
     public int execute(Stack<Integer> s) {
-        return s.pop();
+        if (s.pop() != 1) return 1;
+        return 2;
     }
     
 }

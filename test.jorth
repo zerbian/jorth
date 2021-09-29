@@ -1,4 +1,4 @@
-0 IF
-20 .
-END
-10 .
+10 while dup 1 < do
+    dup .
+    -1 +
+end
