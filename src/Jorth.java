@@ -5,10 +5,11 @@ import java.util.Stack;
 
 public class Jorth {
 
+    private static final String COMMENT_IDENTIFIER = "//";
+
     static Stack<Integer> stack;
     public static void main(String[] args) {
         ExecutionStack es = parseFile(new File(args[0]));
-        System.out.println(es);
         executeProgram(es);        
     }
 
@@ -18,8 +19,8 @@ public class Jorth {
         }
 
         ExecutionStack program = new ExecutionStack();
-
         Scanner s;
+
         try {
             s = new Scanner(f);
         } catch (FileNotFoundException e1) {
@@ -28,63 +29,69 @@ public class Jorth {
             return null;
         }
         while (s.hasNextLine()) {
-            String[] ops = s.nextLine().split(" ");
-            for (String op : ops) {
-                switch (op.toLowerCase()) {
-                    case ".":
-                        program.push(new Dump());
-                        break;
-                    case "+":
-                        program.push(new Plus());
-                        break;
-                    case "-":
-                        program.push(new Minus());
-                        break;
-                    case "*":
-                        program.push(new Mult());
-                        break;
-                    case "mod":
-                        program.push(new Mod());
-                        break;
-                    case "==":
-                        program.push(new Equal());
-                        break;
-                    case "<":
-                        program.push(new LessThan());
-                        break;
-                    case "dup":
-                        program.push(new Dup());
-                        break;
-                    case "swap":
-                        program.push(new Swap());
-                        break;
-                    case "if":
-                        program.push(new If());
-                        break;
-                    case "end":
-                        program.push(new End());
-                        break;
-                    case "while":
-                        program.push(new While());
-                        break;
-                    case "do":
-                        program.push(new Do());
-                        break;
-                    default:
-                        try {
-                            int a = Integer.parseInt(op);
-                            program.push(new Immediate(a));
-                        } catch (Exception e) {
-                            //TODO: handle exception
-                        }
-                        break;
-                }
-            }
+            parseLine(s.nextLine(), program);
         }
         s.close();
         return program;
     }
 
+    private static void parseLine(String s, ExecutionStack program) {
+        String[] ops = s.split(" ");
+        for (String op : ops) {
+            switch (op.toLowerCase()) {
+            case ".":
+                program.push(new Dump());
+                break;
+            case "+":
+                program.push(new Plus());
+                break;
+            case "-":
+                program.push(new Minus());
+                break;
+            case "*":
+                program.push(new Mult());
+                 break;
+            case "mod":
+                program.push(new Mod());
+                break;
+            case "==":
+                program.push(new Equal());
+                break;
+            case "<":
+                program.push(new LessThan());
+                break;
+            case "dup":
+                program.push(new Dup());
+                break;
+            case "swap":
+                program.push(new Swap());
+                break;
+            case "if":
+                program.push(new If());
+                break;
+            case "end":
+                program.push(new End());
+                break;
+            case "while":
+                program.push(new While());
+                break;
+            case "do":
+                program.push(new Do());
+                break;
+            case COMMENT_IDENTIFIER:
+                return;
+            default:
+                try {
+                    int a = Integer.parseInt(op);
+                    program.push(new Immediate(a));
+                } catch (Exception e) {
+                            //TODO: handle exception
+                }
+                break;
+            }
+        }
+    }
+    
     private static void executeProgram(ExecutionStack program) {
         program.execute();
     }

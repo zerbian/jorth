@@ -1,7 +1,7 @@
-10
+40
 while dup 0 < do
     dup 3 swap mod 0 == if
-    dup .
+    // dup .
     end
     1 -
 end
