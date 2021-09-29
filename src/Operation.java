@@ -1,6 +1,9 @@
 import java.util.Stack;
 
-public interface Operation {
-    public int execute(Stack<Integer> s);
-    public String getRep();
+public abstract class Operation {
+    public static final String TOKEN = null;
+    public abstract int execute(Stack<Integer> s);
+    public String getRep() {
+        return TOKEN;
+    }
 }

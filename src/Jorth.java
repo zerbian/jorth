@@ -39,43 +39,49 @@ public class Jorth {
         String[] ops = s.split(" ");
         for (String op : ops) {
             switch (op.toLowerCase()) {
-            case ".":
-                program.push(new Dump());
+            case Print.TOKEN:
+                program.push(new Print());
                 break;
-            case "+":
+            case Plus.TOKEN:
                 program.push(new Plus());
                 break;
-            case "-":
+            case Minus.TOKEN:
                 program.push(new Minus());
                 break;
-            case "*":
+            case Mult.TOKEN:
                 program.push(new Mult());
                  break;
-            case "mod":
+            case Mod.TOKEN:
                 program.push(new Mod());
                 break;
-            case "==":
+            case Equal.TOKEN:
                 program.push(new Equal());
                 break;
-            case "<":
+            case LessThan.TOKEN:
                 program.push(new LessThan());
                 break;
-            case "dup":
+            case Dup.TOKEN:
                 program.push(new Dup());
                 break;
-            case "swap":
+            case Swap.TOKEN:
                 program.push(new Swap());
                 break;
-            case "if":
+            case Over.TOKEN:
+                program.push(new Over());
+                break;
+            case Drop.TOKEN:
+                program.push(new Drop());
+                break;
+            case If.TOKEN:
                 program.push(new If());
                 break;
-            case "end":
+            case End.TOKEN:
                 program.push(new End());
                 break;
-            case "while":
+            case While.TOKEN:
                 program.push(new While());
                 break;
-            case "do":
+            case Do.TOKEN:
                 program.push(new Do());
                 break;
             case COMMENT_IDENTIFIER:

@@ -1,6 +1,8 @@
 import java.util.Stack;
 
-public class Minus implements Operation {
+public class Minus extends Operation {
+
+    public static final String TOKEN = "-";
 
     @Override
     public int execute(Stack<Integer> s) {
@@ -9,10 +11,4 @@ public class Minus implements Operation {
         s.push(b - a);
         return 0;
     }
-
-    @Override
-    public String getRep() {
-        return "-";
-    }
-    
 }

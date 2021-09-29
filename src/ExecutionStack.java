@@ -69,7 +69,7 @@ public class ExecutionStack {
                 if (ifEndLevel > 0) { // if end
                     ifEndLevel--;
                 } else { // while end
-                    Object o = ((End)(opRef.value)).getReference();
+                    Object o = ((End)(opRef.value)).reference;
                     if (o == null) {
                         if (!loopStack.isEmpty()) {
                             o = loopStack.peek();

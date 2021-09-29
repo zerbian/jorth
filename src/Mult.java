@@ -1,6 +1,8 @@
 import java.util.Stack;
 
-public class Mult implements Operation {
+public class Mult extends Operation {
+
+    public static final String TOKEN = "*";
 
     @Override
     public int execute(Stack<Integer> s) {
@@ -9,10 +11,4 @@ public class Mult implements Operation {
         s.push(a * b);
         return 0;
     }
-
-    @Override
-    public String getRep() {
-        return "*";   
-    }
-
 }

@@ -1,18 +1,13 @@
 import java.util.Stack;
 
-public class Dup implements Operation {
+public class Dup extends Operation {
+
+    public static final String TOKEN = "dup";
 
     @Override
     public int execute(Stack<Integer> s) {
-        int value = s.pop();
-        s.push(value);
+        int value = s.peek();
         s.push(value);
         return 0;
     }
-
-    @Override
-    public String getRep() {
-        return "dup";
-    }
-    
 }

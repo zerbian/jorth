@@ -1,7 +1,8 @@
 import java.util.Stack;
 
-public class Immediate implements Operation {
+public class Immediate extends Operation {
 
+    public static final String TOKEN = "";
     private int value;
 
     public Immediate(int value) {
@@ -13,10 +14,4 @@ public class Immediate implements Operation {
         s.push(value);
         return 0;
     }
-
-    @Override
-    public String getRep() {
-        return "" + value;
-    }
-        
 }
