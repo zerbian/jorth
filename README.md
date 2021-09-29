@@ -65,7 +65,7 @@ returns `0` for false and `1` for true.
 10 3 <
 ```
 ```
-1
+0
 ```
 ### Stack Manipulation
 #### Drop
