@@ -117,9 +117,9 @@ end
 
 #### While Loop
 ```
-4 while dup 1 < do
+1 while dup 4 < do
     dup print
-    1 -
+    1 +
 end
 ```
 ```
