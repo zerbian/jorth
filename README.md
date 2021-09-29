@@ -127,3 +127,16 @@ end
 2
 1
 ```
+
+### Macro
+A macro can be used to bundle a sequnce of operation or create custom names for operations.
+```
+macro double_dup
+dup dup
+macro_end
+
+1 dup dup print
+```
+```
+3
+```

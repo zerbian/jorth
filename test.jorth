@@ -1,7 +1,5 @@
-40
-while dup 0 < do
-    dup 3 swap mod 0 == if
-    // dup .
-    end
-    1 -
-end
+macro dupdup
+dup dup
+macro_end
+
+1 dupdup + + print

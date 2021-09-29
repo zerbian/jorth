@@ -1,42 +1,20 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.util.Stack;
 
 public class Jorth {
 
-    private static final String COMMENT_IDENTIFIER = "//";
-
     static Stack<Integer> stack;
     public static void main(String[] args) {
-        ExecutionStack es = parseFile(new File(args[0]));
+        Iterable<String> pre = Preprocessor.read(args[0]);
+        if (pre == null) {
+            System.err.println("File: " + args[0] + " cannot be processed");
+            return;
+        }
+        ExecutionStack es = new ExecutionStack();
+        parseOperations(pre, es);
         executeProgram(es);        
     }
 
-    private static ExecutionStack parseFile(File f) {
-        if (!f.exists() || !f.isFile()) {
-            throw new RuntimeException("File: " + f + " not found!");
-        }
-
-        ExecutionStack program = new ExecutionStack();
-        Scanner s;
-
-        try {
-            s = new Scanner(f);
-        } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-            return null;
-        }
-        while (s.hasNextLine()) {
-            parseLine(s.nextLine(), program);
-        }
-        s.close();
-        return program;
-    }
-
-    private static void parseLine(String s, ExecutionStack program) {
-        String[] ops = s.split(" ");
+    private static void parseOperations(Iterable<String> ops, ExecutionStack program) {
         for (String op : ops) {
             switch (op.toLowerCase()) {
             case Print.TOKEN:
@@ -84,8 +62,6 @@ public class Jorth {
             case Do.TOKEN:
                 program.push(new Do());
                 break;
-            case COMMENT_IDENTIFIER:
-                return;
             default:
                 try {
                     int a = Integer.parseInt(op);
