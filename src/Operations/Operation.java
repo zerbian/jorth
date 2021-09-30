@@ -4,7 +4,11 @@ import java.util.Stack;
 
 public abstract class Operation {
     public static final String TOKEN = null;
-    public abstract int execute(Stack<Integer> s);
+
+    public int execute(Stack<Integer> s) {
+        return 0;
+    }
+
     public String getRep() {
         return TOKEN;
     }
