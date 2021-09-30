@@ -1,4 +1,6 @@
 0 if
 1 print
+else
+2 print
 end
 10 print

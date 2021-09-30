@@ -55,10 +55,12 @@ public class ExecutionStack {
             // check if we hit an IF statement
             if (opRef.value instanceof If) {
                 if  (t == 0) {
-                    advanceToMatchingEnd();
+                    advanceToMatchingElseEnd();
                 } else {
                     ifEndLevel++;
                 }
+            } else if (opRef.value instanceof Else) {
+                advanceToMatchingEnd();
             } else if (opRef.value instanceof While) {
                 loopStack.push(opRef); // save pointer to go back
             } else if (opRef.value instanceof Do) {
@@ -82,7 +84,7 @@ public class ExecutionStack {
                     opRef = (Node)o;
                 }
             }
-            opRef = opRef.next;
+            opRef = opRef != null ? opRef.next : null;
         }
     }
 
@@ -92,6 +94,15 @@ public class ExecutionStack {
             opRef = opRef.next;
             if (opRef.value instanceof If || opRef.value instanceof Do) nested++;
             if (opRef.value instanceof End) nested--;
+        } while (nested != 0);
+    }
+
+    private void advanceToMatchingElseEnd() {
+        int nested = 1;
+        do {
+            opRef = opRef.next;
+            if (opRef.value instanceof If || opRef.value instanceof Do) nested++;
+            if (opRef.value instanceof Else || opRef.value instanceof End) nested--;
         } while (nested != 0);
     }
 }

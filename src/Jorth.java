@@ -77,6 +77,9 @@ public class Jorth {
                 case If.TOKEN:
                     program.push(new If());
                     break;
+                case Else.TOKEN:
+                    program.push(new Else());
+                    break;
                 case End.TOKEN:
                     program.push(new End());
                     break;
