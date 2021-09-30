@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Preprocessor {
 
@@ -46,6 +43,13 @@ public class Preprocessor {
                     return;
                 case IMPORT_IDENTIFIER:
                     //TODO handle file import
+                    String fileImportName = tokens[i+1];
+                    Iterable<String> importedTokens = read(fileImportName);
+                    if (importedTokens == null) {
+                        System.err.println("cannot find " + fileImportName);
+                        return;
+                    }
+                    operations.addAll((Collection<? extends String>) importedTokens);
                     return;
                 case MACRO_IDENTIFIER_START:
                     registerMacro(tokens[i+1], scan);
