@@ -1,0 +1,3 @@
+macro dupdup
+dup dup
+macro_end
