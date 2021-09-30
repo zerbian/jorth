@@ -9,7 +9,7 @@ public class Mod extends Operation{
     public int execute(Stack<Integer> s) {
         int a = s.pop();
         int b = s.pop();
-        s.push(a % b);
+        s.push(b % a);
         return 0;
     }
 
