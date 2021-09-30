@@ -8,21 +8,28 @@ public class Jorth {
 
     static Stack<Integer> stack;
     public static void main(String[] args) {
+        // check for file to run via args[0]
         if (args.length < 1) {
             System.err.println(USAGE_INFO);
             return;
         }
 
+        // run preprocessor (import, macros, comments)
         Iterable<String> pre = Preprocessor.read(args[0]);
         if (pre == null) {
             System.err.println("File: " + args[0] + " cannot be processed");
             return;
         }
+
+        // create execution stack from preprocessed tokens
         ExecutionStack es = new ExecutionStack();
         if (parseOperations(pre, es) != 0) {
             return;
         }
-        System.out.println(es);
+
+        // System.out.println(es);
+
+        // execute programm
         executeProgram(es);
     }
 
