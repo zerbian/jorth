@@ -1,0 +1,15 @@
+// 0 -3
+3
+dup 2 < if
+    dup 1 < if
+        0 print
+    else
+        1 print
+    end
+else
+    dup 3 < if
+        2 print
+    else
+        3 print
+    end
+end
