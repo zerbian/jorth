@@ -7,7 +7,7 @@ public class ExecutionStack {
     private Node tail = null;
     private Node opRef = null;
 
-    private Stack<Node> loopStack = new Stack<>();
+    private final Stack<Node> loopStack = new Stack<>();
 
     int ifEndLevel = 0;
 
