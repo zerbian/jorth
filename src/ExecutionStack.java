@@ -49,14 +49,13 @@ public class ExecutionStack {
             switch (curr.getRep()) {
                 case If.TOKEN:
                     if (status == 0) {
-                        // TODO advance to else or if, whatever comes first
                         advanceIfElseEnd();
                     } else {
                         ifEndLevel++;
                     }
                     break;
                 case Else.TOKEN:
-                    advanceToMatchingEnd();
+                    advanceToMatchingEnd(); // if we hit an else we need to skip it
                     break;
                 case While.TOKEN:
                     loopStack.push(opRef); // save pointer where to go back
@@ -101,6 +100,7 @@ public class ExecutionStack {
         do {
             opRef = opRef.next;
             if (opRef.value instanceof If || opRef.value instanceof Do) nested++;
+            // only check for else block, if we are in the right "nested" level
             if (nested == 1 && opRef.value instanceof Else || opRef.value instanceof End) nested--;
         } while (nested != 0);
     }

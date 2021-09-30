@@ -14,7 +14,7 @@ public class Jorth {
             return;
         }
 
-        // run preprocessor (import, macros, comments)
+        // run preprocessor, handle import, macros, comments
         Iterable<String> pre = Preprocessor.read(args[0]);
         if (pre == null) {
             System.err.println("File: " + args[0] + " cannot be processed");
