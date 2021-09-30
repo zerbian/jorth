@@ -1,3 +1,4 @@
+package Operations;
 import java.util.Stack;
 
 public class Dup extends Operation {
@@ -9,5 +10,9 @@ public class Dup extends Operation {
         int value = s.peek();
         s.push(value);
         return 0;
+    }
+    @Override
+    public String getRep() {
+        return TOKEN;
     }
 }

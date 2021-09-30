@@ -1,3 +1,4 @@
+package Operations;
 import java.util.Stack;
 
 public class Drop extends Operation {
@@ -9,5 +10,9 @@ public class Drop extends Operation {
         s.pop();
         return 0;
     }
-    
+
+    @Override
+    public String getRep() {
+        return TOKEN;
+    }
 }

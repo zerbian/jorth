@@ -1,6 +1,8 @@
+import Operations.*;
+
 import java.util.Stack;
 
-public class ExecutionStack { 
+public class ExecutionStack {
     private Node head = null;
     private Node tail = null;
     private Node opRef = null;
@@ -36,13 +38,13 @@ public class ExecutionStack {
 
     @Override
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         Node pointer = head;
         while(pointer != null) {
-            s += pointer.value.getRep() + " ";
+            s.append(pointer.value.getRep()).append(" ");
             pointer = pointer.next;
         }
-        return s;
+        return s.toString();
     }
 
     public void execute() {
@@ -78,7 +80,7 @@ public class ExecutionStack {
                         }
                     }
                     opRef = (Node)o;
-                }   
+                }
             }
             opRef = opRef.next;
         }

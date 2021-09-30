@@ -1,3 +1,4 @@
+package Operations;
 import java.util.Stack;
 
 public class Over extends Operation {
@@ -12,5 +13,9 @@ public class Over extends Operation {
         s.push(b);
         return 0;
     }
-    
+
+    @Override
+    public String getRep() {
+        return TOKEN;
+    }
 }

@@ -1,3 +1,5 @@
+package Operations;
+
 import java.util.Stack;
 
 public class Print extends Operation {
@@ -7,6 +9,11 @@ public class Print extends Operation {
     @Override
     public int execute(Stack<Integer> s) {
         System.out.println(s.pop());
-        return 0;        
+        return 0;
+    }
+
+    @Override
+    public String getRep() {
+        return TOKEN;
     }
 }

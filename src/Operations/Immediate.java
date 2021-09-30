@@ -1,3 +1,4 @@
+package Operations;
 import java.util.Stack;
 
 public class Immediate extends Operation {
@@ -13,5 +14,10 @@ public class Immediate extends Operation {
     public int execute(Stack<Integer> s) {
         s.push(value);
         return 0;
+    }
+
+    @Override
+    public String getRep() {
+        return "" + value;
     }
 }

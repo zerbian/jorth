@@ -6,3 +6,5 @@ while dup 0 > do
 end
 drop
 macro_end
+
+0 1 2 dupN print print print print

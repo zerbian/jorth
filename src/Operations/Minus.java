@@ -1,3 +1,4 @@
+package Operations;
 import java.util.Stack;
 
 public class Minus extends Operation {
@@ -10,5 +11,10 @@ public class Minus extends Operation {
         int b = s.pop();
         s.push(b - a);
         return 0;
+    }
+
+    @Override
+    public String getRep() {
+        return TOKEN;
     }
 }

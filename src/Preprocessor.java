@@ -11,8 +11,8 @@ public class Preprocessor {
     public static final String MACRO_IDENTIFIER_START = "macro";
     public static final String MACRO_IDENTIFIER_END = "macro_end";
     public static final String IMPORT_IDENTIFIER = "include";
-    
-    private static Map<String,LinkedList<String>> macros = new HashMap<>();
+
+    private static final Map<String,LinkedList<String>> macros = new HashMap<>();
 
     public static Iterable<String> read(String filename) {
         File f = new File(filename);
@@ -50,7 +50,7 @@ public class Preprocessor {
                 case MACRO_IDENTIFIER_START:
                     registerMacro(tokens[i+1], scan);
                     i++;
-                    break;    
+                    break;
                 default:
                     if (macros.containsKey(token)) {
                         operations.addAll(macros.get(token));
