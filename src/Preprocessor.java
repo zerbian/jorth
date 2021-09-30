@@ -44,6 +44,7 @@ public class Preprocessor {
                 case IMPORT_IDENTIFIER:
                     //TODO handle file import
                     String fileImportName = tokens[i+1];
+                    fileImportName = fileImportName.replaceAll("^\"|\"$", ""); // remove possible quotes
                     Iterable<String> importedTokens = read(fileImportName);
                     if (importedTokens == null) {
                         System.err.println("cannot find " + fileImportName);
